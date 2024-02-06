@@ -28,22 +28,116 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.codice_box = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.prezzo_box = new System.Windows.Forms.TextBox();
+            this.descrizione_box = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.aggiungi_btn = new System.Windows.Forms.Button();
+            this.mostra_btn = new System.Windows.Forms.Button();
+            this.articoli = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // codice_box
             // 
-            this.textBox1.Location = new System.Drawing.Point(153, 91);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.codice_box.Location = new System.Drawing.Point(138, 91);
+            this.codice_box.Name = "codice_box";
+            this.codice_box.Size = new System.Drawing.Size(100, 20);
+            this.codice_box.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(52, 94);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "CODICE";
+            // 
+            // prezzo_box
+            // 
+            this.prezzo_box.Location = new System.Drawing.Point(138, 143);
+            this.prezzo_box.Name = "prezzo_box";
+            this.prezzo_box.Size = new System.Drawing.Size(100, 20);
+            this.prezzo_box.TabIndex = 2;
+            // 
+            // descrizione_box
+            // 
+            this.descrizione_box.Location = new System.Drawing.Point(138, 117);
+            this.descrizione_box.Name = "descrizione_box";
+            this.descrizione_box.Size = new System.Drawing.Size(100, 20);
+            this.descrizione_box.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(52, 146);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "PREZZO";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(52, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "DESCRIZIONE";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(393, 235);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 6;
+            // 
+            // aggiungi_btn
+            // 
+            this.aggiungi_btn.Location = new System.Drawing.Point(294, 88);
+            this.aggiungi_btn.Name = "aggiungi_btn";
+            this.aggiungi_btn.Size = new System.Drawing.Size(75, 23);
+            this.aggiungi_btn.TabIndex = 7;
+            this.aggiungi_btn.Text = "AGGIUNGI";
+            this.aggiungi_btn.UseVisualStyleBackColor = true;
+            this.aggiungi_btn.Click += new System.EventHandler(this.aggiungi_btn_Click);
+            // 
+            // mostra_btn
+            // 
+            this.mostra_btn.Location = new System.Drawing.Point(294, 120);
+            this.mostra_btn.Name = "mostra_btn";
+            this.mostra_btn.Size = new System.Drawing.Size(75, 23);
+            this.mostra_btn.TabIndex = 8;
+            this.mostra_btn.Text = "MOSTRA";
+            this.mostra_btn.UseVisualStyleBackColor = true;
+            // 
+            // articoli
+            // 
+            this.articoli.FormattingEnabled = true;
+            this.articoli.Location = new System.Drawing.Point(55, 204);
+            this.articoli.Name = "articoli";
+            this.articoli.Size = new System.Drawing.Size(239, 160);
+            this.articoli.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.articoli);
+            this.Controls.Add(this.mostra_btn);
+            this.Controls.Add(this.aggiungi_btn);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.descrizione_box);
+            this.Controls.Add(this.prezzo_box);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.codice_box);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -53,7 +147,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox codice_box;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox prezzo_box;
+        private System.Windows.Forms.TextBox descrizione_box;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button aggiungi_btn;
+        private System.Windows.Forms.Button mostra_btn;
+        private System.Windows.Forms.ListBox articoli;
     }
 }
 

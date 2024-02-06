@@ -16,6 +16,14 @@ namespace _10___Classe_articoli
         {
             InitializeComponent();
         }
+
+        private void aggiungi_btn_Click(object sender, EventArgs e)
+        {
+            int codice = Convert.ToInt32(codice_box.Text);
+            string descrizione = descrizione_box.Text;
+            double prezzo = Convert.ToInt64(prezzo_box.Text);
+            Articolo articolo = new Articolo(codice, descrizione, prezzo);
+        }
     }
     class Articolo
     {
@@ -46,7 +54,7 @@ namespace _10___Classe_articoli
             Prezzo = pre;
         }
 
-        public double sconta(double pre)
+        public virtual double sconta(double pre)
         {
             double sconto = pre - ((pre * 5) / 100);
             return sconto;
@@ -62,19 +70,81 @@ namespace _10___Classe_articoli
             get { return scadenza; }
             set { scadenza = value; }
         }
-        public AriticoloAlimentare(int sca, int cod, string des, double pre) : base (cod, des, pre)
+        public ArticoloAlimentare(int sca, int cod, string des, double pre) : base (cod, des, pre)
         {
             Scadenza = sca;
         }
+        public override double sconta(double pre)
+        {
+            double sconto = pre - ((pre * 20) / 100);
+            return sconto;
+        }
     }
 
-    class ArticoloNonAlimetare
+    class ArticoloNonAlimetare : Articolo
     {
+        private bool riciclabile;
 
+        public bool Riciclabile
+        {
+            get { return riciclabile; }
+            set { riciclabile = value;}
+        }
+
+        public ArticoloNonAlimetare(bool ric, int cod, string des, double pre) : base(cod, des, pre)
+        {
+            Riciclabile = ric;
+        }
+        public override double sconta(double pre)
+        {
+            if (riciclabile == true)
+            {
+                double sconto = pre - ((pre * 10) / 100);
+                return sconto;
+            }
+            else
+            {
+                return pre;
+            }
+        }
     }
 
-    class AlimentareFresco
+    class AlimentareFresco : Articolo
     {
+        private int giorno;
 
+        public int Giorno
+        {
+            get { return giorno; }
+            set { giorno = value; }
+        }
+
+        public AlimentareFresco(int gio, int cod, string des, double pre) : base(cod, des, pre)
+        {
+            Giorno = gio;
+        }
+
+        public override double sconta(double pre)
+        {
+            if (Giorno <= 1)
+            {
+                double sconto = pre - ((pre * 10) / 100);
+                return sconto;
+            }
+            else if (Giorno <= 3)
+            {
+                double sconto = pre - ((pre * 5) / 100);
+                return sconto;
+            }
+            else if (Giorno >= 5)
+            {
+                double sconto = pre - ((pre * 2) / 100);
+                return sconto;
+            }  
+            else 
+            { 
+                return pre;
+            }
+        }
     }
 }
