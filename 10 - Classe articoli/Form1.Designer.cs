@@ -36,7 +36,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.aggiungi_btn = new System.Windows.Forms.Button();
-            this.mostra_btn = new System.Windows.Forms.Button();
             this.articoli = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
@@ -106,15 +105,6 @@
             this.aggiungi_btn.UseVisualStyleBackColor = true;
             this.aggiungi_btn.Click += new System.EventHandler(this.aggiungi_btn_Click);
             // 
-            // mostra_btn
-            // 
-            this.mostra_btn.Location = new System.Drawing.Point(294, 120);
-            this.mostra_btn.Name = "mostra_btn";
-            this.mostra_btn.Size = new System.Drawing.Size(75, 23);
-            this.mostra_btn.TabIndex = 8;
-            this.mostra_btn.Text = "MOSTRA";
-            this.mostra_btn.UseVisualStyleBackColor = true;
-            // 
             // articoli
             // 
             this.articoli.FormattingEnabled = true;
@@ -129,7 +119,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.articoli);
-            this.Controls.Add(this.mostra_btn);
             this.Controls.Add(this.aggiungi_btn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -155,7 +144,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button aggiungi_btn;
-        private System.Windows.Forms.Button mostra_btn;
         private System.Windows.Forms.ListBox articoli;
     }
 }

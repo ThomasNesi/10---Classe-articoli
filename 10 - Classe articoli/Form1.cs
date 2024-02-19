@@ -23,6 +23,7 @@ namespace _10___Classe_articoli
             string descrizione = descrizione_box.Text;
             double prezzo = Convert.ToInt64(prezzo_box.Text);
             Articolo articolo = new Articolo(codice, descrizione, prezzo);
+            articoli.Items.Add(articolo.Mostra(codice, descrizione, prezzo));
         }
     }
     class Articolo
@@ -52,6 +53,10 @@ namespace _10___Classe_articoli
             Codice = cod;
             Descrizione = des;
             Prezzo = pre;
+        }
+        public string Mostra(int cod, string des, double pre)
+        {
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€";
         }
 
         public virtual double sconta(double pre)
