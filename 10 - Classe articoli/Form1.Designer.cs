@@ -44,6 +44,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tipo_cmbox = new System.Windows.Forms.ComboBox();
+            this.si_check = new System.Windows.Forms.CheckBox();
+            this.no_check = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // codice_box
@@ -104,7 +108,7 @@
             // 
             // aggiungi_btn
             // 
-            this.aggiungi_btn.Location = new System.Drawing.Point(294, 88);
+            this.aggiungi_btn.Location = new System.Drawing.Point(301, 136);
             this.aggiungi_btn.Name = "aggiungi_btn";
             this.aggiungi_btn.Size = new System.Drawing.Size(75, 23);
             this.aggiungi_btn.TabIndex = 7;
@@ -177,11 +181,56 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "GIORNO";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(307, 70);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "TIPO ARTICOLO";
+            // 
+            // tipo_cmbox
+            // 
+            this.tipo_cmbox.FormattingEnabled = true;
+            this.tipo_cmbox.Items.AddRange(new object[] {
+            "ALIMENTARE",
+            "NON ALIMENTARE",
+            "FRESCO"});
+            this.tipo_cmbox.Location = new System.Drawing.Point(301, 90);
+            this.tipo_cmbox.Name = "tipo_cmbox";
+            this.tipo_cmbox.Size = new System.Drawing.Size(121, 21);
+            this.tipo_cmbox.TabIndex = 18;
+            // 
+            // si_check
+            // 
+            this.si_check.AutoSize = true;
+            this.si_check.Location = new System.Drawing.Point(522, 94);
+            this.si_check.Name = "si_check";
+            this.si_check.Size = new System.Drawing.Size(35, 17);
+            this.si_check.TabIndex = 19;
+            this.si_check.Text = "Sì";
+            this.si_check.UseVisualStyleBackColor = true;
+            // 
+            // no_check
+            // 
+            this.no_check.AutoSize = true;
+            this.no_check.Location = new System.Drawing.Point(522, 116);
+            this.no_check.Name = "no_check";
+            this.no_check.Size = new System.Drawing.Size(40, 17);
+            this.no_check.TabIndex = 20;
+            this.no_check.Text = "No";
+            this.no_check.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.no_check);
+            this.Controls.Add(this.si_check);
+            this.Controls.Add(this.tipo_cmbox);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -223,6 +272,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox tipo_cmbox;
+        private System.Windows.Forms.CheckBox si_check;
+        private System.Windows.Forms.CheckBox no_check;
     }
 }
 

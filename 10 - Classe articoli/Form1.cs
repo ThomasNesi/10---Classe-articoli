@@ -24,10 +24,33 @@ namespace _10___Classe_articoli
             double prezzo = Convert.ToInt64(prezzo_box.Text);
             int anno = Convert.ToInt32(anno_box.Text);
             int mese = Convert.ToInt32(mese_box.Text);
-            int giorno = Convert.ToInt32(giorno_box.Text);
+            int giorno = Convert.ToInt32(giorno_box.Text);           
             DateTime dateTime = new DateTime(anno, mese, giorno);
-            Articolo articolo = new Articolo(codice, descrizione, prezzo, dateTime.Date);
-            articoli.Items.Add(articolo.Mostra(codice, descrizione, prezzo, dateTime));
+
+            if (tipo_cmbox.Text == "ALIMENTARE")
+            {
+                ArticoloAlimentare art = new ArticoloAlimentare(codice, descrizione, prezzo, dateTime);
+                if (DateTime.Now.Year == dateTime.Year)
+                {
+                    articoli.Items.Add(art.MostraN(codice, descrizione, prezzo, dateTime));
+                }
+                else
+                {
+                    articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
+                }
+            }
+            else if (tipo_cmbox.Text == "FRESCO")
+            {
+                AlimentareFresco art = new AlimentareFresco(codice, descrizione, prezzo, dateTime);
+                if (DateTime.Now.Year == dateTime.Year && DateTime.Now.Month == dateTime.Month)
+                {
+                    articoli.Items.Add(art.MostraN(codice, descrizione, prezzo, dateTime));
+                }
+                else
+                {
+                    articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
+                }
+            }
         }
     }
     class Articolo
@@ -65,39 +88,40 @@ namespace _10___Classe_articoli
             Prezzo = pre;
             Data = dat;
         }
-        public string Mostra(int cod, string des, double pre, DateTime dat)
-        {
-            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€,  Data Scadenza: {dat}";
-        }
-
         public virtual double sconta(double pre)
         {
             double sconto = pre - ((pre * 5) / 100);
             return sconto;
         }
+        public virtual string Mostra(int cod, string des, double pre, DateTime dat)
+        {
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€,  Data Scadenza: {dat}";
+        }
     }
 
     class ArticoloAlimentare : Articolo
     {
-        private int scadenza;
+        public ArticoloAlimentare(int cod, string des, double pre, DateTime dat) : base (cod, des, pre, dat)
+        {
+            
+        }
 
-        public int Scadenza
-        {
-            get { return scadenza; }
-            set { scadenza = value; }
-        }
-        public ArticoloAlimentare(int sca, int cod, string des, double pre, DateTime dat) : base (cod, des, pre, dat)
-        {
-            Scadenza = sca;
-        }
         public override double sconta(double pre)
         {
             double sconto = pre - ((pre * 20) / 100);
             return sconto;
         }
+        public string MostraN(int cod, string des, double pre, DateTime dat)
+        {
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {sconta(pre)}€,  Data Scadenza: {dat}";
+        }
+        public override string Mostra(int cod, string des, double pre, DateTime dat)
+        {
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€,  Data Scadenza: {dat}";
+        }
     }
 
-    class ArticoloNonAlimetare : Articolo
+    class ArticoloNonAlimentare : Articolo
     {
         private bool riciclabile;
 
@@ -107,7 +131,7 @@ namespace _10___Classe_articoli
             set { riciclabile = value;}
         }
 
-        public ArticoloNonAlimetare(bool ric, int cod, string des, double pre, DateTime dat) : base(cod, des, pre, dat)
+        public ArticoloNonAlimentare(bool ric, int cod, string des, double pre, DateTime dat) : base(cod, des, pre, dat)
         {
             Riciclabile = ric;
         }
@@ -123,44 +147,49 @@ namespace _10___Classe_articoli
                 return pre;
             }
         }
+        public override string Mostra(int cod, string des, double pre, DateTime dat)
+        {
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€,  Data Scadenza: {dat}";
+        }
     }
 
     class AlimentareFresco : Articolo
     {
-        private int giorno;
 
-        public int Giorno
+        public AlimentareFresco(int cod, string des, double pre, DateTime dat) : base(cod, des, pre, dat)
         {
-            get { return giorno; }
-            set { giorno = value; }
+
         }
 
-        public AlimentareFresco(int gio, int cod, string des, double pre, DateTime dat) : base(cod, des, pre, dat)
+        public double sconta(double pre, DateTime dat)
         {
-            Giorno = gio;
-        }
-
-        public override double sconta(double pre)
-        {
-            if (Giorno <= 1)
+            if ((dat.Day - DateTime.Now.Day) <= 1)
             {
                 double sconto = pre - ((pre * 10) / 100);
                 return sconto;
             }
-            else if (Giorno <= 3)
+            else if ((dat.Day - DateTime.Now.Day) <= 3)
             {
                 double sconto = pre - ((pre * 5) / 100);
                 return sconto;
             }
-            else if (Giorno >= 5)
+            else if ((dat.Day - DateTime.Now.Day) >= 5)
             {
                 double sconto = pre - ((pre * 2) / 100);
                 return sconto;
-            }  
-            else 
-            { 
+            }
+            else
+            {
                 return pre;
             }
+        }
+        public string MostraN(int cod, string des, double pre, DateTime dat)
+        {
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {sconta(pre)}€,  Data Scadenza: {dat}";
+        }
+        public override string Mostra(int cod, string des, double pre, DateTime dat)
+        {
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€,  Data Scadenza: {dat}";
         }
     }
 }
