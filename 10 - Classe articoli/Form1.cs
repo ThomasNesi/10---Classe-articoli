@@ -22,8 +22,12 @@ namespace _10___Classe_articoli
             int codice = Convert.ToInt32(codice_box.Text);
             string descrizione = descrizione_box.Text;
             double prezzo = Convert.ToInt64(prezzo_box.Text);
-            Articolo articolo = new Articolo(codice, descrizione, prezzo);
-            articoli.Items.Add(articolo.Mostra(codice, descrizione, prezzo));
+            int anno = Convert.ToInt32(anno_box.Text);
+            int mese = Convert.ToInt32(mese_box.Text);
+            int giorno = Convert.ToInt32(giorno_box.Text);
+            DateTime dateTime = new DateTime(anno, mese, giorno);
+            Articolo articolo = new Articolo(codice, descrizione, prezzo, dateTime.Date);
+            articoli.Items.Add(articolo.Mostra(codice, descrizione, prezzo, dateTime));
         }
     }
     class Articolo
@@ -31,6 +35,7 @@ namespace _10___Classe_articoli
         private int codice;
         private string descrizione;
         private double prezzo;
+        private DateTime data;
 
         public int Codice
         {
@@ -47,16 +52,22 @@ namespace _10___Classe_articoli
             get { return prezzo; }
             set { prezzo = value; }
         }
+        public DateTime Data
+        {
+            get { return data; }
+            set { data = value; }
+        }
 
-        public Articolo(int cod, string des, double pre)
+        public Articolo(int cod, string des, double pre, DateTime dat)
         {
             Codice = cod;
             Descrizione = des;
             Prezzo = pre;
+            Data = dat;
         }
-        public string Mostra(int cod, string des, double pre)
+        public string Mostra(int cod, string des, double pre, DateTime dat)
         {
-            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€";
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {pre}€,  Data Scadenza: {dat}";
         }
 
         public virtual double sconta(double pre)
@@ -75,7 +86,7 @@ namespace _10___Classe_articoli
             get { return scadenza; }
             set { scadenza = value; }
         }
-        public ArticoloAlimentare(int sca, int cod, string des, double pre) : base (cod, des, pre)
+        public ArticoloAlimentare(int sca, int cod, string des, double pre, DateTime dat) : base (cod, des, pre, dat)
         {
             Scadenza = sca;
         }
@@ -96,7 +107,7 @@ namespace _10___Classe_articoli
             set { riciclabile = value;}
         }
 
-        public ArticoloNonAlimetare(bool ric, int cod, string des, double pre) : base(cod, des, pre)
+        public ArticoloNonAlimetare(bool ric, int cod, string des, double pre, DateTime dat) : base(cod, des, pre, dat)
         {
             Riciclabile = ric;
         }
@@ -124,7 +135,7 @@ namespace _10___Classe_articoli
             set { giorno = value; }
         }
 
-        public AlimentareFresco(int gio, int cod, string des, double pre) : base(cod, des, pre)
+        public AlimentareFresco(int gio, int cod, string des, double pre, DateTime dat) : base(cod, des, pre, dat)
         {
             Giorno = gio;
         }
