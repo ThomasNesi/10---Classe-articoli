@@ -35,6 +35,7 @@ namespace _10___Classe_articoli
             int anno = Convert.ToInt32(anno_box.Text);
             int mese = Convert.ToInt32(mese_box.Text);
             int giorno = Convert.ToInt32(giorno_box.Text);
+            bool riciclabile = false;
             DateTime dateTime = new DateTime(anno, mese, giorno);
             List <int> cod = new List<int>();
 
@@ -59,6 +60,18 @@ namespace _10___Classe_articoli
                     if (DateTime.Now.Year == dateTime.Year && DateTime.Now.Month == dateTime.Month)
                     {
                         articoli.Items.Add(art.MostraN(codice, descrizione, prezzo, dateTime));
+                    }
+                    else
+                    {
+                        articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
+                    }
+                }
+                else if (tipo_cmbox.Text == "NON ALIMENTARE")
+                {
+                    ArticoloNonAlimentare art = new ArticoloNonAlimentare(riciclabile, codice, descrizione, prezzo, dateTime);
+                    if (si_check ==)
+                    {
+                        articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
                     }
                     else
                     {
