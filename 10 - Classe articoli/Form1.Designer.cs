@@ -48,6 +48,7 @@
             this.tipo_cmbox = new System.Windows.Forms.ComboBox();
             this.si_check = new System.Windows.Forms.CheckBox();
             this.no_check = new System.Windows.Forms.CheckBox();
+            this.scontrino_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // codice_box
@@ -121,7 +122,7 @@
             this.articoli.FormattingEnabled = true;
             this.articoli.Location = new System.Drawing.Point(55, 235);
             this.articoli.Name = "articoli";
-            this.articoli.Size = new System.Drawing.Size(413, 173);
+            this.articoli.Size = new System.Drawing.Size(473, 173);
             this.articoli.TabIndex = 9;
             // 
             // anno_box
@@ -222,11 +223,22 @@
             this.no_check.Text = "No";
             this.no_check.UseVisualStyleBackColor = true;
             // 
+            // scontrino_btn
+            // 
+            this.scontrino_btn.Location = new System.Drawing.Point(571, 282);
+            this.scontrino_btn.Name = "scontrino_btn";
+            this.scontrino_btn.Size = new System.Drawing.Size(81, 56);
+            this.scontrino_btn.TabIndex = 21;
+            this.scontrino_btn.Text = "MOSTRA SCONTRINO";
+            this.scontrino_btn.UseVisualStyleBackColor = true;
+            this.scontrino_btn.Click += new System.EventHandler(this.scontrino_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.scontrino_btn);
             this.Controls.Add(this.no_check);
             this.Controls.Add(this.si_check);
             this.Controls.Add(this.tipo_cmbox);
@@ -276,6 +288,7 @@
         private System.Windows.Forms.ComboBox tipo_cmbox;
         private System.Windows.Forms.CheckBox si_check;
         private System.Windows.Forms.CheckBox no_check;
+        private System.Windows.Forms.Button scontrino_btn;
     }
 }
 

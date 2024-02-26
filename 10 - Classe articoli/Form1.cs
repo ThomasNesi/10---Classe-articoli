@@ -12,9 +12,19 @@ namespace _10___Classe_articoli
 {
     public partial class Form1 : Form
     {
+        public struct Prodotto
+        {
+            public string descrizione;
+            public double prezzo;
+        }
+        public Prodotto[] p;
+        public int dim;
         public Form1()
         {
             InitializeComponent();
+
+            p = new Prodotto[100];
+            dim = 0;
         }
 
         private void aggiungi_btn_Click(object sender, EventArgs e)
@@ -24,33 +34,43 @@ namespace _10___Classe_articoli
             double prezzo = Convert.ToInt64(prezzo_box.Text);
             int anno = Convert.ToInt32(anno_box.Text);
             int mese = Convert.ToInt32(mese_box.Text);
-            int giorno = Convert.ToInt32(giorno_box.Text);           
+            int giorno = Convert.ToInt32(giorno_box.Text);
             DateTime dateTime = new DateTime(anno, mese, giorno);
+            List <int> cod = new List<int>();
 
-            if (tipo_cmbox.Text == "ALIMENTARE")
+
+            for (int i = 0; i < p.Length; i++)
             {
-                ArticoloAlimentare art = new ArticoloAlimentare(codice, descrizione, prezzo, dateTime);
-                if (DateTime.Now.Year == dateTime.Year)
+                if (tipo_cmbox.Text == "ALIMENTARE")
                 {
-                    articoli.Items.Add(art.MostraN(codice, descrizione, prezzo, dateTime));
+                    ArticoloAlimentare art = new ArticoloAlimentare(codice, descrizione, prezzo, dateTime);
+                    if (DateTime.Now.Year == dateTime.Year)
+                    {
+                        articoli.Items.Add(art.MostraN(codice, descrizione, prezzo, dateTime));
+                    }
+                    else
+                    {
+                        articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
+                    }
                 }
-                else
+                else if (tipo_cmbox.Text == "FRESCO")
                 {
-                    articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
+                    AlimentareFresco art = new AlimentareFresco(codice, descrizione, prezzo, dateTime);
+                    if (DateTime.Now.Year == dateTime.Year && DateTime.Now.Month == dateTime.Month)
+                    {
+                        articoli.Items.Add(art.MostraN(codice, descrizione, prezzo, dateTime));
+                    }
+                    else
+                    {
+                        articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
+                    }
                 }
             }
-            else if (tipo_cmbox.Text == "FRESCO")
-            {
-                AlimentareFresco art = new AlimentareFresco(codice, descrizione, prezzo, dateTime);
-                if (DateTime.Now.Year == dateTime.Year && DateTime.Now.Month == dateTime.Month)
-                {
-                    articoli.Items.Add(art.MostraN(codice, descrizione, prezzo, dateTime));
-                }
-                else
-                {
-                    articoli.Items.Add(art.Mostra(codice, descrizione, prezzo, dateTime));
-                }
-            }
+        }
+
+        private void scontrino_btn_Click(object sender, EventArgs e)
+        {
+            articoli.Items.Clear();
         }
     }
     class Articolo
@@ -185,7 +205,7 @@ namespace _10___Classe_articoli
         }
         public string MostraN(int cod, string des, double pre, DateTime dat)
         {
-            return $"Codice: {cod},  Articolo: {des},  Prezzo: {sconta(pre)}€,  Data Scadenza: {dat}";
+            return $"Codice: {cod},  Articolo: {des},  Prezzo: {sconta(pre, dat)}€,  Data Scadenza: {dat}";
         }
         public override string Mostra(int cod, string des, double pre, DateTime dat)
         {
